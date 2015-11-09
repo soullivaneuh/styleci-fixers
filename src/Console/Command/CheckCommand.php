@@ -68,7 +68,6 @@ class CheckCommand extends Command
     {
         $cwd = getcwd();
         chdir(self::REPOSITORY_PATH);
-
         exec('git add src/Fixers.php ');
         exec(sprintf('git commit -m "Fixers %s" --allow-empty 2>&1', $version));
         exec(sprintf('git tag -a %s -m %s 2>&1', $version, $version));
