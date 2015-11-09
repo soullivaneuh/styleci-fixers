@@ -36,6 +36,7 @@ class Fixers
         'line_after_namespace',
         'list_commas',
         'logical_not_operators_with_spaces',
+        'logical_not_operators_with_successor_space',
         'long_array_syntax',
         'lowercase_constants',
         'lowercase_keywords',
@@ -233,6 +234,7 @@ class Fixers
         'linefeed',
         'line_after_namespace',
         'list_commas',
+        'logical_not_operators_with_successor_space',
         'lowercase_constants',
         'lowercase_keywords',
         'method_argument_space',
@@ -366,6 +368,15 @@ class Fixers
         'phpdoc_var_to_type' => 'phpdoc_type_to_var',
         'unalign_double_arrow' => 'align_double_arrow',
         'unalign_equals' => 'align_equals',
+    );
+
+
+    /**
+     * @var string[]
+     */
+    public static $aliases = array(
+        'phpdoc_params' => 'phpdoc_align',
+        'join_function' => 'alias_functions',
     );
 
     public static function getPresets()
