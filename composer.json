@@ -1,0 +1,22 @@
+{
+    "name": "sllh/styleci-fixers",
+    "description": "Auto configure PHP-CS-Fixer from StyleCI config file",
+    "keywords": ["PHP-CS-Fixer", "StyleCI", "configuration"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sullivan SENECHAL",
+            "email": "soullivaneuh@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.3|^7.0"
+    },
+    "require-dev": {
+        "symfony/console": "~2.3"
+    },
+    "autoload": {
+        "psr-4": { "SLLH\\StyleCIFixers\\": "src" }
+    }
+}
