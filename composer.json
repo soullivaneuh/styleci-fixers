@@ -14,7 +14,9 @@
         "php": "^5.3|^7.0"
     },
     "require-dev": {
-        "symfony/console": "~2.3"
+        "symfony/console": "~2.3",
+        "twig/twig": "~1.23",
+        "fabpot/php-cs-fixer": "~1.10"
     },
     "autoload": {
         "psr-4": { "SLLH\\StyleCIFixers\\": "src" }
