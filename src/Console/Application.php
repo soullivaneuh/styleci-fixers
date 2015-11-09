@@ -18,7 +18,6 @@ class Application extends BaseApplication
     {
         parent::__construct();
 
-        $this->add(new UpdateCommand());
         $this->add(new CheckCommand());
     }
 }

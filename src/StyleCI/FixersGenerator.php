@@ -2,6 +2,7 @@
 
 namespace SLLH\StyleCIFixers\StyleCI;
 
+use Packagist\Api\Client;
 use Symfony\CS\Tokenizer\Token;
 use Symfony\CS\Tokenizer\Tokens;
 
@@ -13,28 +14,54 @@ final class FixersGenerator
     const STYLE_CI_CLASS_FILE = 'https://github.com/StyleCI/Config/raw/master/src/Config.php';
 
     /**
+     * @var Client
+     */
+    private $packagistClient;
+
+    /**
      * @var array
      */
     private $fixersTab = array();
 
+    public function __construct()
+    {
+        $this->packagistClient = new Client();
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getVersions()
+    {
+        $configPackage = $this->packagistClient->get('styleci/config');
+
+        return array_map(function ($version) {
+            return $version->getVersion();
+        }, $configPackage->getVersions());
+    }
+
     /**
      * Generate Fixers.php file.
+     *
+     * @param string $version
      */
-    public function generate()
+    public function generate($version)
     {
-        file_put_contents(__DIR__.'/../Fixers.php', $this->getFixersClass());
+        file_put_contents(__DIR__.'/../Fixers.php', $this->getFixersClass($version));
     }
 
     /**
      * Generate Fixers.php content.
      *
+     * @param string $version
+     *
      * @return string
      */
-    public function getFixersClass()
+    public function getFixersClass($version)
     {
         $twig = new \Twig_Environment(new \Twig_Loader_Filesystem(__DIR__.'/..'));
 
-        $fixersTab = $this->getFixersTab();
+        $fixersTab = $this->getFixersTab($version);
         $presets = array();
         foreach ($fixersTab as $group => $fixers) {
             if (strstr($group, '_fixers')) {
@@ -48,18 +75,20 @@ final class FixersGenerator
     /**
      * Returns fixers tab from StyleCI Config ckass.
      *
+     * @param string $version
+     *
      * @return array
      */
-    public function getFixersTab()
+    public function getFixersTab($version)
     {
-        $this->makeFixersTab();
+        $this->makeFixersTab($version);
 
         return $this->fixersTab;
     }
 
-    private function makeFixersTab()
+    private function makeFixersTab($version)
     {
-        $configClass = file_get_contents('https://github.com/StyleCI/Config/raw/master/src/Config.php');
+        $configClass = file_get_contents('https://raw.githubusercontent.com/StyleCI/Config/'.$version.'/src/Config.php');
 
         /** @var Tokens|Token[] $tokens */
         $tokens = Tokens::fromCode($configClass);

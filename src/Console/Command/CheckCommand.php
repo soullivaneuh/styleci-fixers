@@ -2,9 +2,11 @@
 
 namespace SLLH\StyleCIFixers\Console\Command;
 
+use Composer\Semver\Semver;
 use SLLH\StyleCIFixers\StyleCI\FixersGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -12,6 +14,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CheckCommand extends Command
 {
+    const REPOSITORY_PATH = __DIR__.'/../../..';
+
     /**
      * {@inheritdoc}
      */
@@ -20,6 +24,7 @@ class CheckCommand extends Command
         $this
             ->setName('check')
             ->setDescription('Check if StyleCI fixers config is up to date.')
+            ->addOption('update', 'u', InputOption::VALUE_NONE)
         ;
     }
 
@@ -28,18 +33,55 @@ class CheckCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $fixersClass = file_get_contents(__DIR__.'/../../StyleCI/Fixers.php');
-
+        $shouldBeUpdated = $input->getOption('update');
         $generator = new FixersGenerator();
 
-        if ($fixersClass === $generator->getFixersClass()) {
-            $output->writeln('StyleCI fixers are up to date.');
-        } else {
-            $output->writeln('<error>StyleCI fixers are out of date. Run update command to fix it.</error>');
+        $upToDate = true;
+        foreach (Semver::sort($generator->getVersions()) as $version) {
+            if ('dev-master' === $version) {
+                continue;
+            }
 
-            return 1;
+            $checkoutRet = $this->checkout($version);
+
+            $output->write(sprintf('<info>%s</info>: ', $version));
+
+            if (0 !== $checkoutRet) {
+                $output->writeln('<error>KO</error>');
+                $upToDate = false;
+                if (true === $shouldBeUpdated) {
+                    $generator->generate($version);
+                    $this->commit($version);
+                }
+                continue;
+            }
+
+            $output->writeln('OK');
         }
 
-        return 0;
+        $this->checkout('master');
+
+        return true === $upToDate ? 0 : 1;
+    }
+
+    private function commit($version)
+    {
+        $cwd = getcwd();
+        chdir(self::REPOSITORY_PATH);
+
+        exec('git add src/Fixers.php ');
+        exec(sprintf('git commit -m "Fixers %s" --allow-empty 2>&1', $version));
+        exec(sprintf('git tag -a %s -m %s 2>&1', $version, $version));
+        chdir($cwd);
+    }
+
+    private function checkout($revision)
+    {
+        $cwd = getcwd();
+        chdir(self::REPOSITORY_PATH);
+        exec(sprintf('git checkout %s --force --quiet 2>&1', $revision), $output, $returnValue);
+        chdir($cwd);
+
+        return $returnValue;
     }
 }
