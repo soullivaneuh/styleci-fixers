@@ -22,7 +22,7 @@ final class FixersGenerator
      */
     public function generate()
     {
-        file_put_contents(__DIR__.'/../StyleCI/Fixers.php', $this->getFixersClass());
+        file_put_contents(__DIR__.'/../Fixers.php', $this->getFixersClass());
     }
 
     /**
