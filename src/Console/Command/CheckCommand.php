@@ -50,6 +50,7 @@ class CheckCommand extends Command
                 $output->writeln('<error>KO</error>');
                 $upToDate = false;
                 if (true === $shouldBeUpdated) {
+                    $this->checkout('master');
                     $generator->generate($version);
                     $this->commit($version);
                 }
