@@ -64,6 +64,7 @@ class Fixers
         'phpdoc_no_empty_return',
         'phpdoc_no_package',
         'phpdoc_order',
+        'phpdoc_property',
         'phpdoc_scalar',
         'phpdoc_separation',
         'phpdoc_summary',
@@ -377,6 +378,16 @@ class Fixers
     /**
      * @var string[]
      */
+    public static $aliases = array(
+        'phpdoc_params' => 'phpdoc_align',
+        'phpdoc_short_description' => 'phpdoc_summary',
+        'join_function' => 'alias_functions',
+    );
+
+
+    /**
+     * @var string[]
+     */
     public static $conflicts = array(
         'concat_with_spaces' => 'concat_without_spaces',
         'long_array_syntax' => 'short_array_syntax',
@@ -385,16 +396,6 @@ class Fixers
         'psr0' => 'psr4',
         'unalign_double_arrow' => 'align_double_arrow',
         'unalign_equals' => 'align_equals',
-    );
-
-
-    /**
-     * @var string[]
-     */
-    public static $aliases = array(
-        'phpdoc_params' => 'phpdoc_align',
-        'phpdoc_short_description' => 'phpdoc_summary',
-        'join_function' => 'alias_functions',
     );
 
     public static function getPresets()
