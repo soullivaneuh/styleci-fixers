@@ -3,6 +3,7 @@
 StyleCI fixers class generated from [StyleCI/Config](https://github.com/StyleCI/Config).
 
 [![Build Status](https://travis-ci.org/Soullivaneuh/styleci-fixers.svg?branch=master)](https://travis-ci.org/Soullivaneuh/styleci-fixers)
+[![Total Downloads](https://poser.pugx.org/sllh/styleci-fixers/downloads)](https://packagist.org/packages/sllh/styleci-fixers)
 
 The fixers class and the tags are synced from StyleCI repository.
 
