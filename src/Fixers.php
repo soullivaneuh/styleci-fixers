@@ -16,6 +16,8 @@ class Fixers
         'alias_functions',
         'align_double_arrow',
         'align_equals',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
@@ -150,6 +152,8 @@ class Fixers
      */
     public static $symfony_fixers = array(
         'alias_functions',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
@@ -227,6 +231,8 @@ class Fixers
      */
     public static $laravel_fixers = array(
         'alias_functions',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
@@ -302,6 +308,8 @@ class Fixers
     public static $recommended_fixers = array(
         'alias_functions',
         'align_double_arrow',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
