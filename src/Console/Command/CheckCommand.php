@@ -38,7 +38,8 @@ class CheckCommand extends Command
 
         $upToDate = true;
         foreach (Semver::sort($generator->getVersions()) as $version) {
-            if ('dev-master' === $version) {
+            // Skip dev-* versions
+            if (0 === strncmp($version, 'dev-', 4)) {
                 continue;
             }
 
