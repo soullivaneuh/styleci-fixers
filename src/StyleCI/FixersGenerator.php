@@ -3,6 +3,8 @@
 namespace SLLH\StyleCIFixers\StyleCI;
 
 use Packagist\Api\Client;
+use Packagist\Api\Result\Package;
+use Packagist\Api\Result\Package\Version;
 use Symfony\CS\Tokenizer\Token;
 use Symfony\CS\Tokenizer\Tokens;
 
@@ -33,9 +35,10 @@ final class FixersGenerator
      */
     public function getVersions()
     {
+        /** @var Package $configPackage */
         $configPackage = $this->packagistClient->get('styleci/config');
 
-        return array_map(function ($version) {
+        return array_map(function (Version $version) {
             return $version->getVersion();
         }, $configPackage->getVersions());
     }
