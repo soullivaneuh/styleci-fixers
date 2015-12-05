@@ -420,6 +420,21 @@ class Fixers
         'unalign_equals' => 'align_equals',
     );
 
+
+    /**
+     * @var string[]
+     */
+    public static $risky = array(
+        'ereg_to_preg',
+        'php4_constructor',
+        'php_unit_construct',
+        'php_unit_strict',
+        'psr0',
+        'psr4',
+        'strict',
+        'strict_param',
+    );
+
     public static function getPresets()
     {
         return array(
