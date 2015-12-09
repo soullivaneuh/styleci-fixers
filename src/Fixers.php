@@ -20,6 +20,7 @@ class Fixers
         'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
+        'class_definition',
         'concat_without_spaces',
         'concat_with_spaces',
         'double_arrow_multiline_whitespaces',
@@ -44,6 +45,7 @@ class Fixers
         'long_array_syntax',
         'lowercase_constants',
         'lowercase_keywords',
+        'method_argument_default_value',
         'method_argument_space',
         'method_separation',
         'multiline_array_trailing_comma',
@@ -117,6 +119,21 @@ class Fixers
     /**
      * @var string[]
      */
+    public static $risky = array(
+        'ereg_to_preg',
+        'php4_constructor',
+        'php_unit_construct',
+        'php_unit_strict',
+        'psr0',
+        'psr4',
+        'strict',
+        'strict_param',
+    );
+
+
+    /**
+     * @var string[]
+     */
     public static $psr1_fixers = array(
         'encoding',
         'psr4',
@@ -129,6 +146,7 @@ class Fixers
      */
     public static $psr2_fixers = array(
         'braces',
+        'class_definition',
         'elseif',
         'encoding',
         'eof_ending',
@@ -160,6 +178,7 @@ class Fixers
         'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
+        'class_definition',
         'concat_without_spaces',
         'double_arrow_multiline_whitespaces',
         'duplicate_semicolon',
@@ -178,6 +197,7 @@ class Fixers
         'list_commas',
         'lowercase_constants',
         'lowercase_keywords',
+        'method_argument_default_value',
         'method_argument_space',
         'method_separation',
         'multiline_array_trailing_comma',
@@ -242,6 +262,7 @@ class Fixers
         'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
+        'class_definition',
         'concat_without_spaces',
         'double_arrow_multiline_whitespaces',
         'duplicate_semicolon',
@@ -261,6 +282,7 @@ class Fixers
         'logical_not_operators_with_successor_space',
         'lowercase_constants',
         'lowercase_keywords',
+        'method_argument_default_value',
         'method_argument_space',
         'method_separation',
         'multiline_array_trailing_comma',
@@ -322,6 +344,7 @@ class Fixers
         'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
+        'class_definition',
         'concat_without_spaces',
         'double_arrow_multiline_whitespaces',
         'duplicate_semicolon',
@@ -340,6 +363,7 @@ class Fixers
         'list_commas',
         'lowercase_constants',
         'lowercase_keywords',
+        'method_argument_default_value',
         'method_argument_space',
         'method_separation',
         'multiline_array_trailing_comma',
@@ -418,21 +442,6 @@ class Fixers
         'psr0' => 'psr4',
         'unalign_double_arrow' => 'align_double_arrow',
         'unalign_equals' => 'align_equals',
-    );
-
-
-    /**
-     * @var string[]
-     */
-    public static $risky = array(
-        'ereg_to_preg',
-        'php4_constructor',
-        'php_unit_construct',
-        'php_unit_strict',
-        'psr0',
-        'psr4',
-        'strict',
-        'strict_param',
     );
 
     public static function getPresets()
