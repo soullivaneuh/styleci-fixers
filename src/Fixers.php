@@ -136,6 +136,7 @@ class Fixers
         'whitespace_after_comma_in_array',
     );
 
+
     /**
      * @var string[]
      */
@@ -151,89 +152,92 @@ class Fixers
         'strict_param',
     );
 
+
     /**
      * @var string[]
      */
     public static $aliases = array(
-        'operators_spaces'                           => 'binary_operator_spaces',
-        'line_after_namespace'                       => 'blank_line_after_namespace',
-        'blankline_after_open_tag'                   => 'blank_line_after_opening_tag',
-        'return'                                     => 'blank_line_before_return',
-        'spaces_cast'                                => 'cast_spaces',
-        'short_tag'                                  => 'full_opening_tag',
-        'newline_after_open_tag'                     => 'linebreak_after_opening_tag',
-        'alias_functions'                            => 'no_alias_functions',
-        'join_function'                              => 'no_alias_functions',
-        'no_empty_lines_after_phpdocs'               => 'no_blank_lines_after_phpdoc',
-        'remove_lines_between_uses'                  => 'no_blank_lines_between_uses',
-        'php_closing_tag'                            => 'no_closing_tag',
-        'duplicate_semicolon'                        => 'no_duplicate_semicolons',
-        'extra_empty_lines'                          => 'no_extra_consecutive_blank_lines',
-        'remove_leading_slash_use'                   => 'no_leading_import_slash',
-        'namespace_no_leading_whitespace'            => 'no_leading_namespace_whitespace',
-        'double_arrow_multiline_whitespaces'         => 'no_multiline_whitespace_around_double_arrow',
-        'double_arrow_no_multiline_whitespace'       => 'no_multiline_whitespace_around_double_arrow',
-        'multiline_spaces_before_semicolon'          => 'no_multiline_whitespace_before_semicolons',
-        'php4_constructor'                           => 'no_php4_constructor',
-        'short_bool_cast'                            => 'no_short_bool_cast',
-        'short_echo_tag'                             => 'no_short_echo_tag',
-        'spaces_before_semicolon'                    => 'no_singleline_whitespace_before_semicolons',
-        'function_call_space'                        => 'no_spaces_after_function_name',
-        'parenthesis'                                => 'no_spaces_inside_parenthesis',
-        'indentation'                                => 'no_tab_indentation',
-        'list_commas'                                => 'no_trailing_comma_in_list_call',
-        'single_array_no_trailing_comma'             => 'no_trailing_comma_in_singleline_array',
-        'trailing_spaces'                            => 'no_trailing_whitespace',
-        'unneeded_control_parentheses'               => 'no_unneeded_control_parentheses',
-        'method_argument_default_value'              => 'no_unreachable_default_argument_value',
-        'unused_use'                                 => 'no_unused_imports',
-        'array_element_no_space_before_comma'        => 'no_whitespace_before_comma_in_array',
-        'whitespacy_lines'                           => 'no_whitespace_in_blank_lines',
-        'logical_not_operators_with_spaces'          => 'not_operator_with_space',
-        'not_operators_with_space'                   => 'not_operator_with_space',
+        'operators_spaces' => 'binary_operator_spaces',
+        'line_after_namespace' => 'blank_line_after_namespace',
+        'blankline_after_open_tag' => 'blank_line_after_opening_tag',
+        'return' => 'blank_line_before_return',
+        'spaces_cast' => 'cast_spaces',
+        'short_tag' => 'full_opening_tag',
+        'newline_after_open_tag' => 'linebreak_after_opening_tag',
+        'alias_functions' => 'no_alias_functions',
+        'join_function' => 'no_alias_functions',
+        'no_empty_lines_after_phpdocs' => 'no_blank_lines_after_phpdoc',
+        'remove_lines_between_uses' => 'no_blank_lines_between_uses',
+        'php_closing_tag' => 'no_closing_tag',
+        'duplicate_semicolon' => 'no_duplicate_semicolons',
+        'extra_empty_lines' => 'no_extra_consecutive_blank_lines',
+        'remove_leading_slash_use' => 'no_leading_import_slash',
+        'namespace_no_leading_whitespace' => 'no_leading_namespace_whitespace',
+        'double_arrow_multiline_whitespaces' => 'no_multiline_whitespace_around_double_arrow',
+        'double_arrow_no_multiline_whitespace' => 'no_multiline_whitespace_around_double_arrow',
+        'multiline_spaces_before_semicolon' => 'no_multiline_whitespace_before_semicolons',
+        'php4_constructor' => 'no_php4_constructor',
+        'short_bool_cast' => 'no_short_bool_cast',
+        'short_echo_tag' => 'no_short_echo_tag',
+        'spaces_before_semicolon' => 'no_singleline_whitespace_before_semicolons',
+        'function_call_space' => 'no_spaces_after_function_name',
+        'parenthesis' => 'no_spaces_inside_parenthesis',
+        'indentation' => 'no_tab_indentation',
+        'list_commas' => 'no_trailing_comma_in_list_call',
+        'single_array_no_trailing_comma' => 'no_trailing_comma_in_singleline_array',
+        'trailing_spaces' => 'no_trailing_whitespace',
+        'unneeded_control_parentheses' => 'no_unneeded_control_parentheses',
+        'method_argument_default_value' => 'no_unreachable_default_argument_value',
+        'unused_use' => 'no_unused_imports',
+        'array_element_no_space_before_comma' => 'no_whitespace_before_comma_in_array',
+        'whitespacy_lines' => 'no_whitespace_in_blank_lines',
+        'logical_not_operators_with_spaces' => 'not_operator_with_space',
+        'not_operators_with_space' => 'not_operator_with_space',
         'logical_not_operators_with_successor_space' => 'not_operator_with_successor_space',
-        'object_operator'                            => 'object_operator_without_whitespace',
-        'ordered_use'                                => 'ordered_imports',
-        'phpdoc_params'                              => 'phpdoc_align',
-        'phpdoc_no_simplified_null_return'           => 'phpdoc_no_empty_return',
-        'phpdoc_short_description'                   => 'phpdoc_summary',
-        'empty_return'                               => 'simplified_null_return',
-        'eof_ending'                                 => 'single_blank_line_at_eof',
-        'multiple_use'                               => 'single_import_per_statement',
-        'spaces_after_semicolon'                     => 'space_after_semicolon',
-        'standardize_not_equal'                      => 'standardize_not_equals',
-        'strict'                                     => 'strict_comparison',
-        'ternary_spaces'                             => 'ternary_operator_spaces',
-        'multiline_array_trailing_comma'             => 'trailing_comma_in_multiline_array',
-        'unary_operators_spaces'                     => 'unary_operator_spaces',
-        'linefeed'                                   => 'unix_line_endings',
-        'visibility'                                 => 'visibility_required',
-        'array_element_white_space_after_comma'      => 'whitespace_after_comma_in_array',
+        'object_operator' => 'object_operator_without_whitespace',
+        'ordered_use' => 'ordered_imports',
+        'phpdoc_params' => 'phpdoc_align',
+        'phpdoc_no_simplified_null_return' => 'phpdoc_no_empty_return',
+        'phpdoc_short_description' => 'phpdoc_summary',
+        'empty_return' => 'simplified_null_return',
+        'eof_ending' => 'single_blank_line_at_eof',
+        'multiple_use' => 'single_import_per_statement',
+        'spaces_after_semicolon' => 'space_after_semicolon',
+        'standardize_not_equal' => 'standardize_not_equals',
+        'strict' => 'strict_comparison',
+        'ternary_spaces' => 'ternary_operator_spaces',
+        'multiline_array_trailing_comma' => 'trailing_comma_in_multiline_array',
+        'unary_operators_spaces' => 'unary_operator_spaces',
+        'linefeed' => 'unix_line_endings',
+        'visibility' => 'visibility_required',
+        'array_element_white_space_after_comma' => 'whitespace_after_comma_in_array',
     );
+
 
     /**
      * @var string[]
      */
     public static $conflicts = array(
-        'unalign_double_arrow'               => 'align_double_arrow',
-        'unalign_equals'                     => 'align_equals',
-        'concat_without_spaces'              => 'concat_with_spaces',
-        'concat_with_spaces'                 => 'concat_without_spaces',
-        'print_to_echo'                      => 'echo_to_print',
-        'short_array_syntax'                 => 'long_array_syntax',
+        'unalign_double_arrow' => 'align_double_arrow',
+        'unalign_equals' => 'align_equals',
+        'concat_without_spaces' => 'concat_with_spaces',
+        'concat_with_spaces' => 'concat_without_spaces',
+        'print_to_echo' => 'echo_to_print',
+        'short_array_syntax' => 'long_array_syntax',
         'single_blank_line_before_namespace' => 'no_blank_lines_before_namespace',
-        'no_empty_statement'                 => 'no_duplicate_semicolons',
-        'no_duplicate_semicolons'            => 'no_empty_statement',
-        'phpdoc_var_to_type'                 => 'phpdoc_type_to_var',
-        'phpdoc_type_to_var'                 => 'phpdoc_var_to_type',
-        'echo_to_print'                      => 'print_to_echo',
-        'psr4'                               => 'psr0',
-        'psr0'                               => 'psr4',
-        'long_array_syntax'                  => 'short_array_syntax',
-        'no_blank_lines_before_namespace'    => 'single_blank_line_before_namespace',
-        'align_double_arrow'                 => 'unalign_double_arrow',
-        'align_equals'                       => 'unalign_equals',
+        'no_empty_statement' => 'no_duplicate_semicolons',
+        'no_duplicate_semicolons' => 'no_empty_statement',
+        'phpdoc_var_to_type' => 'phpdoc_type_to_var',
+        'phpdoc_type_to_var' => 'phpdoc_var_to_type',
+        'echo_to_print' => 'print_to_echo',
+        'psr4' => 'psr0',
+        'psr0' => 'psr4',
+        'long_array_syntax' => 'short_array_syntax',
+        'no_blank_lines_before_namespace' => 'single_blank_line_before_namespace',
+        'align_double_arrow' => 'unalign_double_arrow',
+        'align_equals' => 'unalign_equals',
     );
+
 
     /**
      * @var string[]
@@ -243,6 +247,7 @@ class Fixers
         'full_opening_tag',
         'psr4',
     );
+
 
     /**
      * @var string[]
@@ -273,6 +278,7 @@ class Fixers
         'unix_line_endings',
         'visibility_required',
     );
+
 
     /**
      * @var string[]
@@ -369,6 +375,7 @@ class Fixers
         'whitespace_after_comma_in_array',
     );
 
+
     /**
      * @var string[]
      */
@@ -461,6 +468,7 @@ class Fixers
         'visibility_required',
         'whitespace_after_comma_in_array',
     );
+
 
     /**
      * @var string[]
@@ -563,10 +571,10 @@ class Fixers
     public static function getPresets()
     {
         return array(
-            'psr1'        => self::$psr1_fixers,
-            'psr2'        => self::$psr2_fixers,
-            'symfony'     => self::$symfony_fixers,
-            'laravel'     => self::$laravel_fixers,
+            'psr1' => self::$psr1_fixers,
+            'psr2' => self::$psr2_fixers,
+            'symfony' => self::$symfony_fixers,
+            'laravel' => self::$laravel_fixers,
             'recommended' => self::$recommended_fixers,
         );
     }
