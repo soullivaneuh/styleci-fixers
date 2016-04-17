@@ -136,7 +136,6 @@ class Fixers
         'whitespace_after_comma_in_array',
     );
 
-
     /**
      * @var string[]
      */
@@ -151,7 +150,6 @@ class Fixers
         'strict_comparison',
         'strict_param',
     );
-
 
     /**
      * @var string[]
@@ -213,7 +211,6 @@ class Fixers
         'array_element_white_space_after_comma' => 'whitespace_after_comma_in_array',
     );
 
-
     /**
      * @var string[]
      */
@@ -238,7 +235,6 @@ class Fixers
         'align_equals' => 'unalign_equals',
     );
 
-
     /**
      * @var string[]
      */
@@ -247,7 +243,6 @@ class Fixers
         'full_opening_tag',
         'psr4',
     );
-
 
     /**
      * @var string[]
@@ -278,7 +273,6 @@ class Fixers
         'unix_line_endings',
         'visibility_required',
     );
-
 
     /**
      * @var string[]
@@ -375,7 +369,6 @@ class Fixers
         'whitespace_after_comma_in_array',
     );
 
-
     /**
      * @var string[]
      */
@@ -468,7 +461,6 @@ class Fixers
         'visibility_required',
         'whitespace_after_comma_in_array',
     );
-
 
     /**
      * @var string[]
@@ -568,6 +560,9 @@ class Fixers
         'whitespace_after_comma_in_array',
     );
 
+    /**
+     * @return string[][]
+     */
     public static function getPresets()
     {
         return array(
