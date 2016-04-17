@@ -566,11 +566,11 @@ class Fixers
     public static function getPresets()
     {
         return array(
-            'psr1' => self::$psr1_fixers,
-            'psr2' => self::$psr2_fixers,
-            'symfony' => self::$symfony_fixers,
-            'laravel' => self::$laravel_fixers,
-            'recommended' => self::$recommended_fixers,
+            'psr1' => static::$psr1_fixers,
+            'psr2' => static::$psr2_fixers,
+            'symfony' => static::$symfony_fixers,
+            'laravel' => static::$laravel_fixers,
+            'recommended' => static::$recommended_fixers,
         );
     }
 }
