@@ -1,6 +1,6 @@
 # StyleCI Fixers
 
-StyleCI fixers class generated from [StyleCI/Config](https://github.com/StyleCI/Config).
+StyleCI fixers class generated from [StyleCI/SDK](https://github.com/StyleCI/SDK).
 
 [![Build Status](https://travis-ci.org/Soullivaneuh/styleci-fixers.svg?branch=master)](https://travis-ci.org/Soullivaneuh/styleci-fixers)
 [![Latest Stable Version](https://poser.pugx.org/sllh/styleci-fixers/v/stable)](https://packagist.org/packages/sllh/styleci-fixers)
