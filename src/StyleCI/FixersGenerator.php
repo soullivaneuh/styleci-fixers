@@ -99,6 +99,7 @@ final class FixersGenerator
                     'key'  => $alias,
                     'name' => $fixer['name'],
                 ));
+                array_push($this->fixersTab['valid'], array('name' => $alias));
             }
             if (null !== $fixer['conflict']) {
                 array_push($this->fixersTab['conflicts'], array(
@@ -107,6 +108,10 @@ final class FixersGenerator
                 ));
             }
         }
+        // Sort valid fixers (because of aliases additions).
+        usort($this->fixersTab['valid'], function ($fixer1, $fixer2) {
+            return strcmp($fixer1['name'], $fixer2['name']);
+        });
 
         $presets = $this->styleCIClient->presets();
 
