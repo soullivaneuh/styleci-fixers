@@ -34,7 +34,7 @@ class Fixers
     {
         return array(
 {% for preset in presets %}
-            '{{ preset }}' => self::${{ preset }}_fixers,
+            '{{ preset }}' => static::${{ preset }}_fixers,
 {% endfor %}
         );
     }
