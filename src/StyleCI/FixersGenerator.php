@@ -2,69 +2,62 @@
 
 namespace SLLH\StyleCIFixers\StyleCI;
 
-use Packagist\Api\Client;
-use Packagist\Api\Result\Package;
-use Packagist\Api\Result\Package\Version;
-use Symfony\CS\Tokenizer\Token;
-use Symfony\CS\Tokenizer\Tokens;
+use StyleCI\SDK\Client;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
 final class FixersGenerator
 {
-    const STYLE_CI_CLASS_FILE = 'https://github.com/StyleCI/Config/raw/master/src/Config.php';
-
     /**
      * @var Client
      */
-    private $packagistClient;
+    private $styleCIClient;
 
     /**
      * @var array
      */
     private $fixersTab = array();
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
-        $this->packagistClient = new Client();
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getVersions()
-    {
-        /** @var Package $configPackage */
-        $configPackage = $this->packagistClient->get('styleci/config');
-
-        return array_map(function (Version $version) {
-            return $version->getVersion();
-        }, $configPackage->getVersions());
+        $this->styleCIClient = new Client();
     }
 
     /**
      * Generate Fixers.php file.
      *
-     * @param string $version
+     * @param bool $dryRun
+     *
+     * @return bool
      */
-    public function generate($version)
+    public function generate($dryRun = true)
     {
-        file_put_contents(__DIR__.'/../Fixers.php', $this->getFixersClass($version));
+        $classPath = __DIR__.'/../Fixers.php';
+        $generatedClass = $this->getFixersClass();
+
+        if (true === $dryRun) {
+            $actualClass = file_get_contents($classPath);
+
+            return 0 === strcmp($actualClass, $generatedClass);
+        }
+
+        return false !== file_put_contents($classPath, $generatedClass);
     }
 
     /**
      * Generate Fixers.php content.
      *
-     * @param string $version
-     *
      * @return string
      */
-    public function getFixersClass($version)
+    public function getFixersClass()
     {
         $twig = new \Twig_Environment(new \Twig_Loader_Filesystem(__DIR__.'/..'));
 
-        $fixersTab = $this->getFixersTab($version);
+        $fixersTab = $this->getFixersTab();
         $presets = array();
         foreach ($fixersTab as $group => $fixers) {
             if (strstr($group, '_fixers')) {
@@ -76,61 +69,53 @@ final class FixersGenerator
     }
 
     /**
-     * Returns fixers tab from StyleCI Config ckass.
-     *
-     * @param string $version
+     * Returns fixers tab from StyleCI Config class.
      *
      * @return array
      */
-    public function getFixersTab($version)
+    public function getFixersTab()
     {
-        $this->makeFixersTab($version);
+        $this->makeFixersTab();
 
         return $this->fixersTab;
     }
 
-    private function makeFixersTab($version)
+    private function makeFixersTab()
     {
-        $configClass = file_get_contents('https://raw.githubusercontent.com/StyleCI/Config/'.$version.'/src/Config.php');
+        $fixers = $this->styleCIClient->fixers();
 
-        /** @var Tokens|Token[] $tokens */
-        $tokens = Tokens::fromCode($configClass);
-        /*
-         * @var int
-         * @var Token
-         */
-        foreach ($tokens->findGivenKind(T_CONST) as $index => $token) {
-            if ('[' === $tokens[$index + 6]->getContent()) {
-                $name = strtolower($tokens[$index + 2]->getContent());
-                $fixers = array();
-                for ($i = $index + 7; ']' !== $tokens[$i]->getContent(); ++$i) {
-                    if ($tokens[$i]->isGivenKind(T_CONSTANT_ENCAPSED_STRING) && ',' === $tokens[$i + 1]->getContent()) {
-                        // Simple array management
-                        array_push($fixers, array('name' => $this->getString($tokens[$i]->getContent())));
-                    } elseif ($tokens[$i]->isGivenKind(T_CONSTANT_ENCAPSED_STRING)) {
-                        // Double arrow management
-                        $key = $this->getString($tokens[$i]->getContent());
-                        for (++$i; $tokens[$i]->isGivenKind(T_DOUBLE_ARROW); ++$i) {
-                        }
-                        $i += 3;
-                        array_push($fixers, array(
-                            'key'  => $key,
-                            'name' => $this->getString($tokens[$i]->getContent()),
-                        ));
-                    }
-                }
-                $this->fixersTab[$name] = $fixers;
+        $this->fixersTab['valid'] = array();
+        $this->fixersTab['risky'] = array();
+        $this->fixersTab['aliases'] = array();
+        $this->fixersTab['conflicts'] = array();
+
+        foreach ($fixers as $fixer) {
+            array_push($this->fixersTab['valid'], array('name' => $fixer['name']));
+            if (true === $fixer['risky']) {
+                array_push($this->fixersTab['risky'], array('name' => $fixer['name']));
+            }
+            foreach ($fixer['aliases'] as $alias) {
+                array_push($this->fixersTab['aliases'], array(
+                    'key'  => $alias,
+                    'name' => $fixer['name'],
+                ));
+            }
+            if (null !== $fixer['conflict']) {
+                array_push($this->fixersTab['conflicts'], array(
+                    'key'  => $fixer['conflict'],
+                    'name' => $fixer['name'],
+                ));
             }
         }
-    }
 
-    /**
-     * @param string $tokenContent
-     *
-     * @return string
-     */
-    private function getString($tokenContent)
-    {
-        return str_replace(array('"', "'"), '', $tokenContent);
+        $presets = $this->styleCIClient->presets();
+
+        foreach ($presets as $preset) {
+            $fixers = array();
+            foreach ($preset['fixers'] as $fixerName) {
+                array_push($fixers, array('name' => $fixerName));
+            }
+            $this->fixersTab[$preset['name'].'_fixers'] = $fixers;
+        }
     }
 }
