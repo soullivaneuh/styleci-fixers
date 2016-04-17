@@ -3,7 +3,6 @@
 namespace SLLH\StyleCIFixers\Console;
 
 use SLLH\StyleCIFixers\Console\Command\CheckCommand;
-use SLLH\StyleCIFixers\Console\Command\UpdateCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 
 /**

@@ -3,9 +3,9 @@
 namespace SLLH\StyleCIFixers;
 
 /**
- * This class was auto-generated from StyleCI/Config repository.
+ * This class was auto-generated from StyleCI/SDK tool.
  *
- * @link https://github.com/StyleCI/Config/blob/master/src/Config.php
+ * @link https://github.com/StyleCI/SDK
  */
 class Fixers
 {
