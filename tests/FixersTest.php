@@ -11,7 +11,7 @@ final class FixersTest extends \PHPUnit_Framework_TestCase
 {
     public function testNotEmptyProperties()
     {
-        $properties = [
+        $properties = array(
             'valid',
             'risky',
             'aliases',
@@ -21,7 +21,7 @@ final class FixersTest extends \PHPUnit_Framework_TestCase
             'symfony_fixers',
             'laravel_fixers',
             'recommended_fixers',
-        ];
+        );
 
         foreach ($properties as $property) {
             $this->assertNotEmpty(Fixers::$$property, 'Fixers::$'.$property.' property should not be empty.');
