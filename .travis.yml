@@ -1,10 +1,28 @@
 language: php
 
-php: 5.6
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - nightly
+  - hhvm
 
 env:
   global:
     - PATH="$HOME/.composer/vendor/bin:$PATH"
+    - CHECK="0"
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 5.6
+      env: CHECK="1"
+    - php: 7.0
+      env: CHECK="1"
+  allow_failures:
+    - php: nightly
 
 sudo: false
 
@@ -12,11 +30,18 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
-before_script:
-  - composer selfupdate
+before_install:
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then phpenv config-rm xdebug.ini; fi;
+
+install:
   - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
-  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+  - composer global require phpunit/phpunit:@stable --no-update
+  - composer global update --prefer-dist --no-interaction
+  - if [ "$CHECK" = "0" ]; then COMPOSER_DEV="--no-dev"; fi;
+  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS $COMPOSER_DEV
 
 # Nightly builded with https://nightli.es/
 # See also: https://github.com/travis-ci/travis-ci/issues/582#issuecomment-124136045
-script: ./fixers check
+script:
+  - phpunit
+  - if [ "$CHECK" = "1" ]; then ./fixers check; fi;
