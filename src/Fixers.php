@@ -7,7 +7,7 @@ namespace SLLH\StyleCIFixers;
  *
  * @link https://github.com/StyleCI/SDK
  */
-class Fixers
+final class Fixers
 {
     /**
      * @var string[]

@@ -8,7 +8,7 @@ use Symfony\Component\Console\Application as BaseApplication;
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-class Application extends BaseApplication
+final class Application extends BaseApplication
 {
     /**
      * {@inheritdoc}
