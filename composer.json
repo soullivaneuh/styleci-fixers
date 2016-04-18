@@ -18,7 +18,6 @@
         "styleci/sdk": "^1.0",
         "symfony/console": "^2.3 || ^3.0",
         "twig/twig": "^1.23",
-        "fabpot/php-cs-fixer": "^1.10",
         "sllh/php-cs-fixer-styleci-bridge": "^1.3"
     },
     "autoload": {

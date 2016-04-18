@@ -17,7 +17,7 @@ final class FixersGenerator
     /**
      * @var array
      */
-    private $fixersTab = array();
+    private $fixersTab = [];
 
     /**
      * Constructor.
@@ -58,14 +58,14 @@ final class FixersGenerator
         $twig = new \Twig_Environment(new \Twig_Loader_Filesystem(__DIR__.'/..'));
 
         $fixersTab = $this->getFixersTab();
-        $presets = array();
+        $presets = [];
         foreach ($fixersTab as $group => $fixers) {
             if (strstr($group, '_fixers')) {
                 array_push($presets, str_replace('_fixers', '', $group));
             }
         }
 
-        return $twig->render('StyleCI/Fixers.php.twig', array('fixersTab' => $fixersTab, 'presets' => $presets));
+        return $twig->render('StyleCI/Fixers.php.twig', ['fixersTab' => $fixersTab, 'presets' => $presets]);
     }
 
     /**
@@ -84,36 +84,36 @@ final class FixersGenerator
     {
         $fixers = $this->styleCIClient->fixers();
 
-        $this->fixersTab['valid'] = array();
-        $this->fixersTab['risky'] = array();
-        $this->fixersTab['aliases'] = array();
-        $this->fixersTab['conflicts'] = array();
+        $this->fixersTab['valid'] = [];
+        $this->fixersTab['risky'] = [];
+        $this->fixersTab['aliases'] = [];
+        $this->fixersTab['conflicts'] = [];
 
         foreach ($fixers as $fixer) {
-            array_push($this->fixersTab['valid'], array('name' => $fixer['name']));
+            array_push($this->fixersTab['valid'], ['name' => $fixer['name']]);
             if (true === $fixer['risky']) {
-                array_push($this->fixersTab['risky'], array('name' => $fixer['name']));
+                array_push($this->fixersTab['risky'], ['name' => $fixer['name']]);
             }
             foreach ($fixer['aliases'] as $alias) {
-                array_push($this->fixersTab['aliases'], array(
-                    'key'  => $alias,
+                array_push($this->fixersTab['aliases'], [
+                    'key' => $alias,
                     'name' => $fixer['name'],
-                ));
+                ]);
             }
             if (null !== $fixer['conflict']) {
-                array_push($this->fixersTab['conflicts'], array(
-                    'key'  => $fixer['conflict'],
+                array_push($this->fixersTab['conflicts'], [
+                    'key' => $fixer['conflict'],
                     'name' => $fixer['name'],
-                ));
+                ]);
             }
         }
 
         $presets = $this->styleCIClient->presets();
 
         foreach ($presets as $preset) {
-            $fixers = array();
+            $fixers = [];
             foreach ($preset['fixers'] as $fixerName) {
-                array_push($fixers, array('name' => $fixerName));
+                array_push($fixers, ['name' => $fixerName]);
             }
             $this->fixersTab[$preset['name'].'_fixers'] = $fixers;
         }
