@@ -23,5 +23,8 @@
     },
     "autoload": {
         "psr-4": { "SLLH\\StyleCIFixers\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "SLLH\\StyleCIFixers\\Tests": "src" }
     }
 }
