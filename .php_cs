@@ -1,10 +1,24 @@
 <?php
 
-require __DIR__.'/vendor/sllh/php-cs-fixer-styleci-bridge/autoload.php';
+$config = Symfony\CS\Config\Config::create()
+    ->fixers(array(
+        'short_array_syntax',
+        'newline_after_open_tag',
+        'ordered_use',
+        'php_unit_construct',
+        'php_unit_strict',
+        'strict',
+        'strict_param',
+    ))
+    ->finder(
+        Symfony\CS\Finder\DefaultFinder::create()
+            ->exclude('tests')
+            ->notPath('src/Fixers.php')
+            ->notName('*.php.twig')
+            ->in(__DIR__)
+    )
+;
 
-use SLLH\StyleCIBridge\ConfigBridge;
-
-$config = ConfigBridge::create();
 $config->setUsingCache(true);
 
 if (method_exists($config, 'setRiskyAllowed')) {
