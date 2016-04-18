@@ -39,7 +39,8 @@ install:
   - composer config -g github-oauth.github.com $GITHUB_OAUTH_TOKEN
   - composer global require phpunit/phpunit:@stable --no-update
   - composer global update --prefer-dist --no-interaction
-  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+  - if [ "$CHECK" = "0" ]; then COMPOSER_DEV="--no-dev"; fi;
+  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS $COMPOSER_DEV
 
 # Nightly builded with https://nightli.es/
 # See also: https://github.com/travis-ci/travis-ci/issues/582#issuecomment-124136045
