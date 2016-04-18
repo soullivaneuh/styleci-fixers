@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-class CheckCommand extends Command
+final class CheckCommand extends Command
 {
     const REPOSITORY_PATH = __DIR__.'/../../..';
 
