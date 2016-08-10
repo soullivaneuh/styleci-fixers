@@ -137,6 +137,7 @@ final class Fixers
         'unalign_equals',
         'unary_operator_spaces',
         'unix_line_endings',
+        'uppercase_constants',
         'visibility_required',
         'whitespace_after_comma_in_array',
     );
@@ -234,6 +235,7 @@ final class Fixers
         'concat_with_spaces' => 'concat_without_spaces',
         'print_to_echo' => 'echo_to_print',
         'short_array_syntax' => 'long_array_syntax',
+        'uppercase_constants' => 'lowercase_constants',
         'single_blank_line_before_namespace' => 'no_blank_lines_before_namespace',
         'phpdoc_var_to_type' => 'phpdoc_type_to_var',
         'phpdoc_type_to_var' => 'phpdoc_var_to_type',
@@ -244,6 +246,7 @@ final class Fixers
         'no_blank_lines_before_namespace' => 'single_blank_line_before_namespace',
         'align_double_arrow' => 'unalign_double_arrow',
         'align_equals' => 'unalign_equals',
+        'lowercase_constants' => 'uppercase_constants',
     );
 
     /**
