@@ -183,6 +183,83 @@ final class Fixers
     );
 
     /**
+     * @var array[]
+     */
+    public static $aliasOptions = array(
+        'align_double_arrow' => array(
+            'binary_operator_spaces' => array(
+                'align_double_arrow' => 'true'
+            )
+        ),
+        'align_equals' => array(
+            'binary_operator_spaces' => array(
+                'align_equals' => 'true'
+            )
+        ),
+        'unalign_double_arrow' => array(
+            'binary_operator_spaces' => array(
+                'align_double_arrow' => false,
+            )
+        ),
+        'unalign_equals' => array(
+            'binary_operator_spaces' => array(
+                'align_equals' => false,
+            )
+        ),
+        'concat_with_spaces' => array(
+            'concat_spaces' => array(
+                'spacing' => 'one'
+            )
+        ),
+        'concat_without_spaces' => array(
+            'concat_spaces' => array(
+                'spacing' => 'none'
+            )
+        ),
+        'echo_to_print' => array(
+            'no_mixed_echo_print' => array(
+                'use' => 'print'
+            )
+        ),
+        'print_to_echo' => array(
+            'no_mixed_echo_print' => array(
+                'use' => 'echo'
+            )
+        ),
+        'long_array_syntax' => array(
+            'array_syntax' => array(
+                'syntax' => 'long'
+            )
+        ),
+        'short_array_syntax' => array(
+            'array_syntax' => array(
+                'syntax' => 'short'
+            )
+        ),
+        'general_phpdoc_annotation_rename' => array(
+            'phpdoc_no_alias_tag' => array(
+                'property-read' => 'property',
+                'property-write' => 'property'
+            )
+        ),
+        'phpdoc_property' => array(
+            'phpdoc_no_alias_tag' => array(
+                'type' => 'var',
+            )
+        ),
+        'phpdoc_type_to_var' => array(
+            'phpdoc_no_alias_tag' => array(
+                'type' => 'var',
+            )
+        ),
+        'phpdoc_var_to_type' => array(
+            'phpdoc_no_alias_tag' => array(
+                'var' => 'type',
+            )
+        ),
+    );
+
+    /**
      * @var string[]
      */
     public static $aliases = array(
@@ -246,7 +323,7 @@ final class Fixers
         'ternary_spaces' => 'ternary_operator_spaces',
         'multiline_array_trailing_comma' => 'trailing_comma_in_multiline_array',
         'unary_operators_spaces' => 'unary_operator_spaces',
-        'linefeed' => 'unix_line_endings',
+        'linefeed' => 'line_ending',
         'array_element_white_space_after_comma' => 'whitespace_after_comma_in_array',
     );
 
