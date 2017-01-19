@@ -16,7 +16,7 @@
     "require-dev": {
         "styleci/sdk": "^1.0",
         "symfony/console": "^3.0",
-        "twig/twig": "^1.23"
+        "twig/twig": "^2.0"
     },
     "autoload": {
         "psr-4": { "SLLH\\StyleCIFixers\\": "src" }
