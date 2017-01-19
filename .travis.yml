@@ -41,8 +41,6 @@ install:
   - if [ "$CHECK" = "0" ]; then COMPOSER_DEV="--no-dev"; COMPOSER_PLATFORM="--ignore-platform-reqs"; fi;
   - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS $COMPOSER_DEV $COMPOSER_PLATFORM
 
-# Nightly builded with https://nightli.es/
-# See also: https://github.com/travis-ci/travis-ci/issues/582#issuecomment-124136045
 script:
   - phpunit
   - if [ "$CHECK" = "1" ]; then ./fixers check; fi;
