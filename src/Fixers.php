@@ -401,7 +401,6 @@ final class Fixers
         'self_accessor',
         'short_scalar_cast',
         'silenced_deprecation_error',
-        'simplified_null_return',
         'single_blank_line_at_eof',
         'single_blank_line_before_namespace',
         'single_class_element_per_statement',
