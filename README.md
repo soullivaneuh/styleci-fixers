@@ -1,5 +1,11 @@
 # StyleCI Fixers
 
+:warning: **This package is not maintained anymore.** :warning:
+
+**My adventure continue on [FlintCI](https://flintci.io).**
+
+**More info [here](https://github.com/Soullivaneuh/php-cs-fixer-styleci-bridge#php-cs-fixer-styleci-bridge).**
+
 StyleCI fixers class generated from [StyleCI/SDK](https://github.com/StyleCI/SDK).
 
 [![Build Status](https://travis-ci.org/Soullivaneuh/styleci-fixers.svg?branch=master)](https://travis-ci.org/Soullivaneuh/styleci-fixers)
