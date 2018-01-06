@@ -2,12 +2,13 @@
 
 namespace SLLH\StyleCIFixers\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SLLH\StyleCIFixers\Fixers;
 
 /**
  * @author Sullivan Senechal <soullivaneuh@gmail.com>
  */
-final class FixersTest extends \PHPUnit_Framework_TestCase
+final class FixersTest extends TestCase
 {
     public function testNotEmptyProperties()
     {
